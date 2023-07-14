@@ -1,19 +1,40 @@
+int button = 10;
+int red = 13;
+int yellow = 12;
+int green = 11;
+int counter = 0;
+int read = 0;
 void setup()
 {
-  pinMode(10,OUTPUT);
-}
+  pinMode(red,OUTPUT);
+pinMode(yellow,OUTPUT); 
+  pinMode(green,OUTPUT);
+  pinMode(button,INPUT);
+  }
 void loop()
 {
-  for(int i=0;i<=255;i=i+2)
-  {
-    analogWrite(10,i);
-    delay(15);
-    
-    
-  }
-  for(int i=255;i>=0;i=i-2)
-  {
-     analogWrite(10,i);
-    delay(15);
+  read=digitalRead(button);
+  if(read == HIGH){
+    counter++;
+    switch(counter)
+    {
+      case 1 : digitalWrite(red,HIGH);
+      delay(250);
+      break;
+      case 2 : digitalWrite(yellow,HIGH);
+      delay(250);
+      break;
+      case 3 : digitalWrite(green,HIGH);
+      delay(250);
+      break;
+      
+     default : digitalWrite(red,LOW);
+      digitalWrite(yellow,LOW);
+      digitalWrite(green,LOW);
+      counter = 0;
+      break;
+    }
+    delay(500);
   }
 }
+      
